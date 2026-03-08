@@ -1,0 +1,91 @@
+@import url("https://fonts.googleapis.com/css?family=Dosis");
+
+body {
+    font-family: "Dosis", sans-serif;
+    background-color: #1b2b35;
+    margin: 0;
+    overflow-x: hidden;
+    color: white;
+}
+
+.hero-portfolio--header {
+    text-align: center;
+    padding: 40px 0;
+}
+
+.hero-portfolio--grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    perspective: 1000px;
+}
+
+.c-card {
+    position: relative;
+    height: 400px; /* Altura fija para que los videos verticales se luzcan */
+    overflow: hidden;
+    border-radius: 15px;
+    background: #000;
+    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.5s;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.c-card--image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Esto hace que el video/foto llene el cuadro sin deformarse */
+    display: block;
+}
+
+/* Efecto hover */
+.c-card:hover {
+    transform: scale(1.05) rotateY(5deg);
+    z-index: 10;
+    box-shadow: 0 15px 40px rgba(235, 63, 132, 0.3);
+}
+
+/* Efecto de desenfoque al resto cuando señalas uno */
+.hero-portfolio--grid.is-focus .c-card.no-focus {
+    filter: blur(5px) grayscale(0.5);
+    opacity: 0.5;
+}
+
+/* Botón flotante de música */
+.c-music-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000; /* Asegura que esté por encima de las fotos */
+  background: #eb3f84; /* Color rosa romántico */
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.c-music-btn:hover {
+  transform: scale(1.1);
+  background: #d12e6d;
+}
+
+/* Animación de pulso cuando la música suena */
+.is-playing {
+  animation: music-pulse 2s infinite;
+}
+
+@keyframes music-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(235, 63, 132, 0.7); }
+  70% { box-shadow: 0 0 0 15px rgba(235, 63, 132, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(235, 63, 132, 0); }
+}
